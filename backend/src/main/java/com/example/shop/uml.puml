@@ -1,0 +1,229 @@
+@startuml
+
+' Factory Pattern
+package "com.example.shop.factory" {
+    interface OrderFactory
+    class DigitalOrderFactory {
+        + createOrder(id: long, basePrice: double):OrderContext
+    }
+    class PhysicalOrderFactory {
+        + createOrder(id: long, basePrice: double): OrderContext
+    }
+    OrderFactory <|-- DigitalOrderFactory
+    OrderFactory <|-- PhysicalOrderFactory
+}
+
+' State Pattern
+package "com.example.shop.state" {
+    interface OrderState {
+        + handle(ctx: OrderContext): void
+        + name(): String
+    }
+    class NewOrderState
+    class ProcessingState
+    class ShippedState
+    class DeliveredState
+    class ClosedState
+
+    class OrderContext {
+        - id: long
+        - type: String
+        - basePrice: double
+        - deliveryCost: double
+        - estimatedDays: int
+        - state: OrderState
+        - observers: List<OrderObserver>
+        - notificationsEnabled: boolean
+
+        + OrderContext(id: long, type: String, basePrice: double)
+        + next(): void
+        + getId(): long
+        + getType(): String
+        + getState(): OrderState
+        + setState(s: OrderState): void
+        + addObserver(o: OrderObserver): void
+        + notifyObservers(): void
+        + notifyObserversManually(): void
+        + printReceipt(): void
+    }
+
+    OrderState <|-- NewOrderState
+    OrderState <|-- ProcessingState
+    OrderState <|-- ShippedState
+    OrderState <|-- DeliveredState
+    OrderState <|-- ClosedState
+
+    OrderContext *-- OrderState
+
+
+}
+
+' Template Method Pattern
+package "com.example.shop.template" {
+    abstract class AbstractOrderProcessor {
+        + process(ctx: OrderContext): void
+        # doProcess(ctx: OrderContext): void
+        # validate(ctx: OrderContext): void
+        # postProcess(ctx: OrderContext): void
+    }
+    class PhysicalOrderProcessor {
+        + doProcess(ctx: OrderContext): void
+    }
+    class DigitalOrderProcessor {
+        + doProcess(ctx: OrderContext): void
+    }
+    AbstractOrderProcessor <|-- PhysicalOrderProcessor
+    AbstractOrderProcessor <|-- DigitalOrderProcessor
+    AbstractOrderProcessor ..> OrderContext
+}
+
+' Command Pattern
+package "com.example.shop.command" {
+    interface OrderCommand {
+        + execute(): void
+    }
+    class PayOrderCommand {
+        - service: OrderService
+        - orderId: long
+        + PayOrderCommand(service: OrderService, orderId: long)
+        + execute(): void
+    }
+    class RefundOrderCommand {
+        - service: OrderService
+        - orderId: long
+        + RefundOrderCommand(service: OrderService, orderId: long)
+        + execute(): void
+    }
+    class CancelOrderCommand {
+        - service: OrderService
+        - orderId: long
+        + CancelOrderCommand(service: OrderService, orderId: long)
+        + execute(): void
+    }
+    class CommandInvoker {
+        - history: Deque<OrderCommand>
+        + executeCommand(cmd: OrderCommand): void
+        + undo(): void
+    }
+    OrderCommand <|-- PayOrderCommand
+    OrderCommand <|-- RefundOrderCommand
+    OrderCommand <|-- CancelOrderCommand
+    CommandInvoker --> OrderCommand
+    PayOrderCommand ..> OrderService
+    CancelOrderCommand ..> OrderService
+    RefundOrderCommand ..> OrderService
+
+}
+
+' Observer Pattern
+package "com.example.shop.observer" {
+    interface OrderObserver {
+        + update(order: OrderContext): void
+    }
+    class SMSObserver
+    class LogObserver
+    class EmailObserver {
+        - mailSender: JavaMailSender
+        - recipient: String
+        + EmailObserver(mailSender: JavaMailSender, recipient: String)
+        + update(order: OrderContext): void
+    }
+    class WebSocketObserver {
+        - ws: SimpMessagingTemplate
+        + WebSocketObserver(ws: SimpMessagingTemplate)
+        + update(order: OrderContext): void
+    }
+    OrderObserver <|-- SMSObserver
+    OrderObserver <|-- LogObserver
+    OrderObserver <|-- EmailObserver
+    OrderObserver <|-- WebSocketObserver
+    OrderContext o-- OrderObserver
+
+}
+
+' Domain Model
+package "com.example.shop.model" {
+    class Product {
+        - id: Long
+        - name: String
+        - description: String
+        - price: Double
+        - imageUrl: String
+        - category: String
+        + getters()/setters()
+    }
+}
+
+' Persistence
+package "com.example.shop.repository" {
+    interface ProductRepository
+}
+
+' Services
+package "com.example.shop.service" {
+    class OrderService {
+        - seq: AtomicLong
+        - orders: Map<Long, OrderContext>
+        - physicalFactory: PhysicalOrderFactory
+        - digitalFactory: DigitalOrderFactory
+        - mailSender: JavaMailSender
+        - wsTemplate: SimpMessagingTemplate
+
+        + createOrder(type: String, basePrice: double): long
+        + getById(id: long): OrderContext
+        + getAll(): List<OrderContext>
+        + processOrder(id: long): void
+        + cancelOrder(id: long): void
+        + refundOrder(id: long): void
+    }
+    class ProductService {
+        - repo: ProductRepository
+        + getAll(...): List<Product>
+        + getById(id: Long): Optional<Product>
+        + other filtering methods...
+    }
+    OrderService o-- OrderContext
+    OrderService ..> PhysicalOrderFactory
+    OrderService ..> DigitalOrderFactory
+    OrderService ..> SMSObserver
+    OrderService ..> LogObserver
+    OrderService ..> WebSocketObserver
+    OrderService ..> EmailObserver
+    ProductService o-- ProductRepository
+    OrderService  *-- OrderFactory
+    OrderService *-- AbstractOrderProcessor
+    OrderService o-- CommandInvoker
+    ProductService ..> Product
+}
+
+' Web Layer
+package "com.example.shop.controller" {
+    class OrderController
+    class ProductController
+    class CartController
+    class HomeController
+    OrderController o-- OrderService
+    ProductController ..> ProductService
+    CartController ..> OrderService
+    CartController ..> Product
+    OrderController ..> OrderService
+    OrderController ..> PayOrderCommand
+    OrderController ..> CancelOrderCommand
+    OrderController ..> RefundOrderCommand
+}
+
+' Configuration
+package "com.example.shop.config" {
+    class ProductDataInitializer {
+        + run(args: String[]): void
+    }
+    class WebSocketConfig
+    ProductDataInitializer ..> ProductRepository
+    WebSocketConfig ..> SimpMessagingTemplate
+}
+
+' Application
+class ShopApplication
+ShopApplication ..> SpringApplication
+
+@enduml

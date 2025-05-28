@@ -1,0 +1,198 @@
+{
+  "navbar": {
+    "home": "Главная",
+    "products": "Товары",
+    "cart": "Корзина",
+    "orders": "Заказы",
+    "toggle": "EN"
+  },
+
+  "homePage": {
+    "welcome": "Добро пожаловать в наш магазин!",
+    "logout": "Выйти",
+    "adminPanel": "Панель администратора"
+  },
+
+  "adminPage": {
+    "loadError": "Не удалось загрузить товары.",
+    "deleteConfirm": "Вы уверены, что хотите удалить этот товар?",
+    "deleteError": "Не удалось удалить товар.",
+    "title": "Панель администратора - Управление товарами",
+    "addNew": "Добавить новый товар",
+    "backToCatalog": "Назад в каталог",
+    "loading": "Загрузка...",
+    "header": {
+      "id": "ID",
+      "name": "Название",
+      "price": "Цена",
+      "category": "Категория",
+      "actions": "Действия"
+    },
+    "edit": "Редактировать",
+    "delete": "Удалить"
+  },
+
+  "cartPage": {
+    "title": "Ваша корзина",
+    "empty": "Ваша корзина пуста.",
+    "header": {
+      "name": "Название",
+      "category": "Категория",
+      "price": "Цена",
+      "action": "Действие"
+    },
+    "order": "Заказать",
+    "checkoutAll": "Оформить все"
+  },
+
+  "editProductPage": {
+    "loadError": "Не удалось загрузить товар.",
+    "title": "Редактирование товара №{{id}}",
+    "loading": "Загрузка...",
+    "nameLabel": "Название",
+    "descriptionLabel": "Описание",
+    "priceLabel": "Цена",
+    "imageUrlLabel": "Ссылка на изображение",
+    "categoryLabel": "Категория",
+    "categoryPlaceholder": "-- Выберите категорию --",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "saveError": "Не удалось сохранить товар: {{message}}"
+  },
+
+  "loginPage": {
+    "title": "Вход",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "login": "Войти",
+    "loginFailed": "Ошибка входа. Пожалуйста, попробуйте снова.",
+    "noAccount": "Нет аккаунта?",
+    "register": "Регистрация",
+    "forgotPassword": "Забыли пароль?"
+  },
+
+  "orderDetailPage": {
+    "loading": "Загрузка деталей заказа...",
+    "orderNumber": "Заказ №{{id}}",
+    "type": "Тип",
+    "state": "Статус",
+    "basePrice": "Стоимость",
+    "deliveryCost": "Стоимость доставки",
+    "total": "Итого",
+    "estimatedDays": "Срок доставки (дней)",
+    "actions": {
+      "pay": "Оплатить",
+      "cancel": "Отменить",
+      "refund": "Возврат"
+    },
+    "alerts": {
+      "paid": "Заказ успешно оплачен.",
+      "cancelled": "Заказ отменён.",
+      "refunded": "Заказ возвращён.",
+      "error": "Ошибка: {{message}}"
+    },
+    "backToList": "Назад к заказам"
+  },
+
+  "orderFormPage": {
+    "title": "Создать заказ",
+    "typeLabel": "Тип заказа",
+    "type": {
+      "physical": "Физический",
+      "digital": "Цифровой"
+    },
+    "priceLabel": "Цена",
+    "create": "Создать",
+    "cancel": "Отмена"
+  },
+
+  "ordersPage": {
+    "loading": "Загрузка заказов...",
+    "title": "Заказы",
+    "header": {
+      "id": "ID",
+      "type": "Тип",
+      "state": "Статус",
+      "deliveryCost": "Стоимость доставки",
+      "action": "Действие"
+    },
+    "view": "Просмотр"
+  },
+
+  "productFormPage": {
+    "editTitle": "Редактировать товар",
+    "addTitle": "Добавить новый товар",
+    "nameLabel": "Название",
+    "descriptionLabel": "Описание",
+    "priceLabel": "Цена",
+    "imageUrlLabel": "Ссылка на изображение",
+    "categoryLabel": "Категория",
+    "categoryPlaceholder": "-- Выберите категорию --",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "saveError": "Не удалось сохранить товар: {{message}}"
+  },
+
+  "productsPage": {
+    "title": "Товары",
+    "addProduct": "Добавить товар",
+    "adminPanel": "Панель администратора",
+    "profile": "Профиль",
+    "searchPlaceholder": "Поиск товаров...",
+    "sort": {
+      "none": "Без сортировки",
+      "priceAsc": "Цена ↑",
+      "priceDesc": "Цена ↓",
+      "nameAsc": "Название A–Я",
+      "nameDesc": "Название Я–A"
+    },
+    "applyFilters": "Применить фильтры",
+    "loading": "Загрузка товаров...",
+    "loadError": "Не удалось загрузить товары.",
+    "notFound": "Товары не найдены.",
+    "toCart": "В корзину",
+    "addToCartError": "Не удалось добавить в корзину.",
+    "yourCart": "Ваша корзина",
+    "cartEmpty": "Ваша корзина пуста.",
+    "addedBy": "Добавил",
+    "unknown": "Неизвестно"
+  },
+  "profilePage": {
+    "title": "Мой профиль",
+    "loadError": "Не удалось загрузить профиль.",
+    "nameLabel": "Имя",
+    "emailLabel": "Email",
+    "avatarLabel": "Аватар",
+    "avatarAlt": "Аватар пользователя",
+    "save": "Сохранить",
+    "saveSuccess": "Профиль сохранён.",
+    "saveError": "Ошибка при сохранении профиля.",
+    "selectFile": "Сначала выберите файл.",
+    "uploadAvatar": "Загрузить аватар",
+    "avatarUploaded": "Аватар загружен.",
+    "avatarError": "Ошибка при загрузке аватара.",
+    "logout": "Выйти"
+  },
+  "registerPage": {
+    "title": "Регистрация",
+    "namePlaceholder": "Имя",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "roleUser": "Пользователь",
+    "roleAdmin": "Админ",
+    "submit": "Зарегистрироваться",
+    "fail": "Не удалось зарегистрироваться.",
+    "networkError": "Ошибка сети.",
+    "haveAccount": "Уже есть аккаунт?",
+    "login": "Войти"
+  },
+  "resetPage": {
+    "title": "Сброс пароля",
+    "emailPlaceholder": "Ваш Email",
+    "passwordPlaceholder": "Новый пароль",
+    "submit": "Сбросить",
+    "success": "Пароль успешно изменён.",
+    "fail": "Ошибка сброса пароля.",
+    "networkError": "Ошибка сети."
+  }
+}

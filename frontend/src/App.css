@@ -1,0 +1,51 @@
+/* src/App.css */
+
+/* 1. Ограничиваем высоту изображения и включаем object-fit */
+.product-img {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* 2. Делаем тело карточки флекс-контейнером, чтобы «прижать» футер вниз */
+.product-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. «Прижимаем» блок с ценой и кнопкой вниз */
+.product-card .mt-auto {
+  margin-top: auto;
+}
+
+/* 4. Обрезка длинных заголовков и описаний */
+.product-card .card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-card .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;      /* макс. 2 строки */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 5. Лёгкий hover-эффект */
+.product-card {
+  transition: transform .2s;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 576px) {
+  .product-img {
+    height: 150px;
+  }
+}
+@media (min-width: 577px) and (max-width: 991.98px) {
+  .product-img {
+    height: 170px;
+  }
+}
+.card { border-radius: var(--border-radius); }

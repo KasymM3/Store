@@ -2,7 +2,7 @@ package com.example.shop.payload.response;
 
 import java.util.List;
 
-// src/main/java/com/example/shop/payload/response/JwtResponse.java
+
 public class JwtResponse {
     private String token;
     private List<String> roles;

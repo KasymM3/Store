@@ -27,7 +27,7 @@ public class OrderService {
     private final OrderFactory physicalFactory = new PhysicalOrderFactory();
     private final OrderFactory digitalFactory  = new DigitalOrderFactory();
 
-//    @Autowired private JavaMailSender mailSender;
+
     @Autowired private SimpMessagingTemplate wsTemplate;
 
     private final AbstractOrderProcessor physicalProcessor = new PhysicalOrderProcessor();
@@ -37,7 +37,7 @@ public class OrderService {
     public long createOrder(String type, double basePrice) {
         long id = seq.getAndIncrement();
 
-        // выбираем фабрику по типу
+
         OrderContext ctx;
         if ("physical".equals(type)) {
             ctx = physicalFactory.createOrder(id, basePrice);
@@ -47,7 +47,7 @@ public class OrderService {
 
         ctx.addObserver(new SMSObserver());
         ctx.addObserver(new LogObserver());
-//        ctx.addObserver(new EmailObserver(mailSender, "customer@example.com"));
+
         ctx.addObserver(new WebSocketObserver(wsTemplate));
 
         orders.put(id, ctx);

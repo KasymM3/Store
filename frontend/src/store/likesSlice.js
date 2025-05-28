@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { api } from '../api'
 
-// Получить лайки по продукту
 export const fetchLikes = createAsyncThunk(
     'likes/fetchByProduct',
     async (productId) => {
@@ -10,7 +9,7 @@ export const fetchLikes = createAsyncThunk(
     }
 )
 
-// Переключить лайк
+
 export const toggleLike = createAsyncThunk(
     'likes/toggle',
     async (productId) => {

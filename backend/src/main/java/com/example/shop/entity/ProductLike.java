@@ -1,4 +1,4 @@
-// back/src/main/java/com/example/shop/entity/ProductLike.java
+
 package com.example.shop.entity;
 
 import jakarta.persistence.*;
@@ -28,7 +28,7 @@ public class ProductLike {
         this.id = new ProductLikeKey(user.getId(), product.getId());
     }
 
-    // геттеры/сеттеры
+
     public ProductLikeKey getId() { return id; }
     public void setId(ProductLikeKey id) { this.id = id; }
     public User getUser() { return user; }

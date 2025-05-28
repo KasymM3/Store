@@ -33,19 +33,19 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(auth -> auth
-                        /* открытые ресурсы  */
+                        
                         .requestMatchers("/api/auth/**",
                                 "/login", "/register",
                                 "/css/**", "/js/**", "/images/**").permitAll()
-                        /* продукты можно смотреть всем */
+                        
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
-                        /* корзину можно создавать/просматривать всем   */
+                        
                         .requestMatchers(HttpMethod.GET,  "/api/cart").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/cart").permitAll()
-                        /* всё, что оформляет заказ – только авторизованным */
+                        
                         .requestMatchers("/api/cart/checkout", "/api/cart/order/**")
                         .authenticated()
-                        /* остальное закрыто */
+                        
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authProvider)
@@ -54,7 +54,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /* ---------- инфраструктура ---------- */
+    
     @Bean
     public PasswordEncoder passwordEncoder() {     // замените при необходимости
         return NoOpPasswordEncoder.getInstance();

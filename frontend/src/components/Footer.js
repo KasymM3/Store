@@ -14,5 +14,5 @@ export default function Footer() {
         }, console.error);
     }, []);
 
-    return null; // данные скрипты нам не нужно рендерить как DOM-элемент
+    return null;
 }

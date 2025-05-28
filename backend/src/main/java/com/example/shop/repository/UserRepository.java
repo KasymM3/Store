@@ -1,5 +1,5 @@
 
-// UserRepository.java
+
 package com.example.shop.repository;
 
 import com.example.shop.entity.User;

@@ -1,4 +1,4 @@
-// src/components/NavBar.js
+
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

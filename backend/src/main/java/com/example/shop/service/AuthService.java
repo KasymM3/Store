@@ -1,4 +1,4 @@
-// AuthService.java
+
 package com.example.shop.service;
 
 import com.example.shop.entity.User;
@@ -28,7 +28,7 @@ public class AuthService implements UserDetailsService {
         this.encoder = encoder;
     }
 
-    // src/main/java/com/example/shop/service/AuthService.java
+
     @Transactional
     public User registerUser(SignupRequest req) {
         if (userRepo.existsByEmail(req.getEmail()))
@@ -54,7 +54,7 @@ public class AuthService implements UserDetailsService {
         return userRepo.save(user);
     }
 
-    /* маленький хелпер, пригодится ниже */
+    
     public User getByEmail(String email) {
         return userRepo.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
@@ -89,5 +89,5 @@ public class AuthService implements UserDetailsService {
         userRepo.save(user);
     }
 
-    // For password reset you’d implement a token/email flow—omitted for brevity.
+
 }

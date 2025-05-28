@@ -1,4 +1,4 @@
-// back/src/main/java/com/example/shop/service/ProductService.java
+
 package com.example.shop.service;
 
 import com.example.shop.dto.ProductDto;
@@ -24,7 +24,7 @@ public class ProductService {
         this.likeRepo = likeRepo;
     }
 
-    /* ---------- API ---------- */
+    
 
     public List<String> getAllCategories() {
         return repo.findDistinctCategories();
@@ -37,7 +37,7 @@ public class ProductService {
     public List<Product> getFiltered(String q, String sortKey) {
         List<Product> list = repo.findAll();
 
-        /* фильтр по поисковой строке */
+        
         if (q != null && !q.isBlank()) {
             String lower = q.toLowerCase();
             list = list.stream()
@@ -48,7 +48,7 @@ public class ProductService {
                     .collect(Collectors.toList());
         }
 
-        /* сортировка */
+        
         if (sortKey != null && !sortKey.isBlank()) {
             switch (sortKey) {
                 case "priceAsc"  -> list.sort(Comparator.comparing(Product::getPrice));
@@ -62,10 +62,10 @@ public class ProductService {
 
     @Transactional
     public void delete(Long id) {
-        /* 1. Удаляем все лайки, связанные с товаром */
+        
         likeRepo.deleteByIdProductId(id);
 
-        /* 2. Удаляем сам товар */
+        
         repo.deleteById(id);
     }
 
@@ -78,7 +78,7 @@ public class ProductService {
         return repo.save(product);
     }
 
-    /* ---------- DTO-маппер ---------- */
+    
     public ProductDto toDto(Product p) {
         ProductDto dto = new ProductDto();
         dto.setId(p.getId());

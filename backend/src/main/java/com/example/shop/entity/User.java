@@ -40,7 +40,7 @@ public class User {
     @Column(name = "avatar")         // без @Lob и без columnDefinition
     private byte[] avatar;
 
-    /** MIME-тип загруженного файла (image/png, image/jpeg …) */
+    
     @Column(name = "avatar_content_type", length = 40)
     private String avatarContentType;
 

@@ -26,7 +26,7 @@ public class OrderRestController {
         this.invoker = invoker;
     }
 
-    // GET /api/orders
+
     @GetMapping
     public List<OrderDto> list() {
         return service.getAll().stream()
@@ -34,7 +34,7 @@ public class OrderRestController {
                 .collect(Collectors.toList());
     }
 
-    // GET /api/orders/{id}
+
     @GetMapping("/{id}")
     public ResponseEntity<OrderDto> getById(@PathVariable Long id) {
         OrderContext ctx = service.getById(id);
@@ -43,7 +43,7 @@ public class OrderRestController {
                 : ResponseEntity.notFound().build();
     }
 
-    // POST /api/orders
+
     @PostMapping
     public ResponseEntity<OrderDto> create(@RequestBody CreateOrderRequest dto) {
         long id = service.createOrder(dto.getType(), dto.getPrice());
@@ -52,7 +52,7 @@ public class OrderRestController {
     }
 
 
-    // POST /api/orders/{id}/action?action=pay|cancel|refund
+
     @PostMapping("/{id}/action")
     public ResponseEntity<Void> action(
             @PathVariable Long id,

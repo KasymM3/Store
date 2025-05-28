@@ -28,9 +28,9 @@ public class JwtTokenProvider {
 
     private final UserRepository userRepo;
 
-    /* ======================  PUBLIC API  ====================== */
+    
 
-    /** Генерация токена (используется при логине) */
+    
     public String generateToken(Authentication auth) {
         var user = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
         return Jwts.builder()
@@ -41,7 +41,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    /** Проверка подписи + даты */
+    
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
@@ -49,33 +49,33 @@ public class JwtTokenProvider {
                     .parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException ex) {
-            // подпись не сходится, токен просрочен или битый
+
             return false;
         }
     }
 
-    /** Создаём Authentication, который кладётся в SecurityContext */
+    
     public Authentication getAuthentication(String token) {
         String email = getUsernameFromToken(token);
 
-        // роли можно достать из токена или из БД – здесь берём из базы
+
         User user = userRepo.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         List<SimpleGrantedAuthority> authorities = user.getRoles()
                 .stream()
                 .map(role ->
-                                // enum  →  "ROLE_ADMIN"  (или "ROLE_USER" и т.д.)
+
                                 new SimpleGrantedAuthority(role.getName().name())
-                        //                       └───────┬────────┘
-                        //                                enum → String
+
+
                 )
                 .collect(Collectors.toList());
 
         return new UsernamePasswordAuthenticationToken(email, null, authorities);
     }
 
-    /* ====================  SERVICE METHODS  ==================== */
+    
 
     private String getUsernameFromToken(String token) {
         Claims claims = Jwts.parser()

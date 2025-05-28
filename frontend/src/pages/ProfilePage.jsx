@@ -1,4 +1,4 @@
-// src/pages/ProfilePage.jsx
+
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';

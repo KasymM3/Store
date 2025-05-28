@@ -7,16 +7,16 @@ import com.example.shop.state.NewOrderState;
 public abstract class AbstractOrderProcessor {
 
     public final void process(OrderContext ctx) {
-        // печатаем шаблонный блок только на NEW
+
         if (ctx.getState() instanceof NewOrderState) {
-            // 1) заголовок (из конкретного процессора)
+
             doProcess(ctx);
-            // 2) валидация
+
             validate(ctx);
-            // 3) расчёт + печать стоимости
+
             calculateAndPrint(ctx);
         }
-        // 4) переключаем состояние всегда
+
         postProcess(ctx);
     }
 
@@ -26,9 +26,9 @@ public abstract class AbstractOrderProcessor {
     }
 
 
-//     * Считаем deliveryCost, estimatedDays
-//     * и сразу печатаем "Digital order cost: base=..., delivery=..., days=..."
-//
+
+
+
     private void calculateAndPrint(OrderContext ctx) {
         if ("physical".equals(ctx.getType())) {
             ctx.setDeliveryCost(10.0);
@@ -44,14 +44,14 @@ public abstract class AbstractOrderProcessor {
                 ctx.getDeliveryCost(), ctx.getEstimatedDays());
     }
 
-//     Заголовок, конкретная строка вида
-//      === Обработка физического заказа ===
-//      или
-//     === Обработка цифрового заказа ===
+
+
+
+
 
     protected abstract void doProcess(OrderContext ctx);
 
-    /** Переводим в следующий `State` */
+    
     protected void postProcess(OrderContext ctx) {
         ctx.next();
     }

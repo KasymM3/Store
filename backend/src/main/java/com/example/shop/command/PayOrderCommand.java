@@ -17,13 +17,13 @@ public class PayOrderCommand implements OrderCommand {
         OrderContext ctx = service.getById(orderId);
         if (ctx == null) return;
 
-        // Отключаем промежуточные уведомления
+
         ctx.setNotificationsEnabled(false);
 
 
         service.processOrder(orderId);
 
-        // Включаем уведомления и посылаем итоговое оповещение
+
         ctx.setNotificationsEnabled(true);
         ctx.notifyObserversManually();
     }

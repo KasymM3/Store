@@ -22,7 +22,7 @@ public class ProductDto {
 
     private AddedByDto addedBy;
 
-    // ★ NEW
+
     @Data
     public static class AddedByDto {
         private Long id;

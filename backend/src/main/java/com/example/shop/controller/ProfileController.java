@@ -18,20 +18,20 @@ public class ProfileController {
 
     private final UserService userService;
 
-    /** Получить данные текущего пользователя */
+    
     @GetMapping
     public UserProfileDto me(Authentication auth) {
         return userService.getProfile(auth.getName());
     }
 
-    /** Обновить имя / пароль */
+    
     @PutMapping
     public UserProfileDto update(@RequestBody UpdateProfileRequest req,
                                  Authentication auth) {
         return userService.updateProfile(auth.getName(), req);
     }
 
-    /** Загрузить/заменить аватар */
+    
     @PostMapping(path = "/avatar",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> avatar(@RequestParam("file") MultipartFile file,

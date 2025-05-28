@@ -1,4 +1,4 @@
-// src/pages/CartPage.js
+
 import React, { useEffect, useState } from 'react';
 import { api } from '../api';
 import { useTranslation } from 'react-i18next';

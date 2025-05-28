@@ -46,7 +46,7 @@ public class UserService {
         userRepo.save(u);
     }
 
-    /* ---------- helpers ---------- */
+    
     private UserProfileDto toDto(User u) {
         UserProfileDto dto = new UserProfileDto();
         dto.setId(u.getId());

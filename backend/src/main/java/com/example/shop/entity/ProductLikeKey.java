@@ -1,4 +1,4 @@
-// back/src/main/java/com/example/shop/entity/ProductLikeKey.java
+
 package com.example.shop.entity;
 
 import jakarta.persistence.Embeddable;
@@ -18,7 +18,7 @@ public class ProductLikeKey implements Serializable {
         this.productId = productId;
     }
 
-    // геттеры/сеттеры
+
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
     public Long getProductId() { return productId; }

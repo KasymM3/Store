@@ -1,4 +1,4 @@
-// back/src/main/java/com/example/shop/service/LikeServiceImpl.java
+
 package com.example.shop.service;
 
 import com.example.shop.entity.ProductLike;

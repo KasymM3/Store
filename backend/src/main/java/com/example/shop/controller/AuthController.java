@@ -1,4 +1,4 @@
-// AuthController.java
+
 package com.example.shop.controller;
 
 import com.example.shop.entity.User;
@@ -37,7 +37,7 @@ public class AuthController {
         return ResponseEntity.ok("User registered");
     }
 
-    // src/main/java/com/example/shop/controller/AuthController.java
+
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest req) {
         Authentication auth = authManager.authenticate(
@@ -45,7 +45,7 @@ public class AuthController {
 
         String jwt = tokenProvider.generateToken(auth);
 
-        // берём реальные роли пользователя из базы
+
         User user  = authService.getByEmail(req.getEmail());
         List<String> roles = user.getRoles().stream()
                 .map(r -> r.getName().name())
@@ -61,5 +61,5 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("message", "Пароль успешно сброшен"));
     }
 
-    // For password reset: you'd send email with token link → separate endpoint to confirm.
+
 }

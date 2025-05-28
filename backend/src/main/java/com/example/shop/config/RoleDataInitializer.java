@@ -1,4 +1,4 @@
-// src/main/java/com/example/shop/config/RoleDataInitializer.java
+
 package com.example.shop.config;
 
 import com.example.shop.entity.ERole;

@@ -1,4 +1,4 @@
-// src/pages/HomePage.js
+
 import React, { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';

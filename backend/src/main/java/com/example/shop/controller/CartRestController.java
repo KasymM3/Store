@@ -29,7 +29,7 @@ public class CartRestController {
         this.orderService = orderService;
     }
 
-    // 1) При первом запросе создаём пустую корзину
+
 
     @ModelAttribute("cart")
     public List<CartItem> cart() {
@@ -37,42 +37,42 @@ public class CartRestController {
     }
 
 
-    // 2) GET /api/cart — возвращаем текущее состояние корзины
-//    @GetMapping
-//    public List<CartItem> getCart(@ModelAttribute("cart") List<CartItem> cart) {
-//        return cart;
-//    }
-//
-//    // 3) POST /api/cart — добавляем продукт по его id
-//    @PostMapping
-//    public List<CartItem> addToCart(
-//            @ModelAttribute("cart") List<CartItem> cart,
-//            @RequestBody AddToCartRequest req
-//    ) {
-//        Long productId = req.getProductId();
-//        int qty = (req.getQuantity() != null ? req.getQuantity() : 1);
-//
-//        Product prod = productService.getById(productId)
-//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        // если уже есть — увеличим количество
-//        for (CartItem item : cart) {
-//            if (item.getProductId().equals(productId)) {
-//                item.setQuantity(item.getQuantity() + qty);
-//                return cart;
-//            }
-//        }
-//
-//        // иначе добавим новый элемент
-//        CartItem newItem = new CartItem(
-//                prod.getId(),
-//                prod.getName(),
-//                prod.getPrice(),
-//                qty
-//        );
-//        cart.add(newItem);
-//        return cart;
-//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @DeleteMapping("/{productId}")
     public List<CartItem> removeFromCart(
@@ -82,20 +82,20 @@ public class CartRestController {
         cart.removeIf(i -> i.getProductId().equals(productId));
         return cart;
     }
-    // 4) POST /api/cart/checkout — оформляем заказ и сбрасываем корзину
+
     @PostMapping("/checkout")
     public ResponseEntity<Void> checkout(HttpSession session) {
         @SuppressWarnings("unchecked")
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
         if (cart != null && !cart.isEmpty()) {
             for (CartItem item : cart) {
-                // получаем свежий Product, чтобы взять у него категорию и цену
+
                 Product p = productService.getById(item.getProductId())
                         .orElseThrow(() ->
                                 new ResponseStatusException(HttpStatus.NOT_FOUND,
                                         "Product not found: " + item.getProductId()));
                 String type = "Digital".equals(p.getCategory()) ? "digital" : "physical";
-                // если в корзине было несколько штук — создаём столько заказов
+
                 for (int i = 0; i < item.getQuantity(); i++) {
                     orderService.createOrder(type, p.getPrice());
                 }
@@ -157,7 +157,7 @@ public class CartRestController {
         while (it.hasNext()) {
             CartItem item = it.next();
             if (item.getProductId().equals(productId)) {
-                // для каждого количества товара достаём Product и оформляем заказ
+
                 Product p = productService.getById(item.getProductId())
                         .orElseThrow(() ->
                                 new ResponseStatusException(HttpStatus.NOT_FOUND,

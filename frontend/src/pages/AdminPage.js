@@ -1,4 +1,4 @@
-// src/pages/AdminPage.js
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';

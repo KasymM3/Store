@@ -1,4 +1,4 @@
-// src/pages/ProductsPage.js
+
 import React, { useEffect, useContext } from 'react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
